@@ -31,7 +31,9 @@
               "src/styles/prime/primeng.less",
               "src/styles.less"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/howler/dist/howler.core.min.js"
+            ]
           },
           "configurations": {
             "production": {

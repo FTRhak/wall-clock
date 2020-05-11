@@ -12,6 +12,8 @@ import { PanelAnnounceTimeComponent } from './components/panel-announce-time/pan
 import { AppStateService } from './services/app-state.service';
 import { VoiceService } from './services/voice.service';
 import { FormsModule } from '@angular/forms';
+import { PanelRadioComponent } from './components/panel-radio/panel-radio.component';
+import { RadioService } from './services/radio.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     PanelClockComponent,
     PanelAlarmComponent,
     PanelAsistentComponent,
-    PanelAnnounceTimeComponent
+    PanelAnnounceTimeComponent,
+    PanelRadioComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,7 @@ import { FormsModule } from '@angular/forms';
     DialogModule,
     FormsModule
   ],
-  providers: [AppStateService, VoiceService],
+  providers: [AppStateService, VoiceService, RadioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
