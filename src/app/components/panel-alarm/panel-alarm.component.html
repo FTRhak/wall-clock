@@ -1,0 +1,22 @@
+<div class="panel-alarm">
+  <button class="action-button alart-turn" [ngClass]="{'active': state.alarm.active}"
+    (click)="state.alarm.active = !state.alarm.active">
+    <i class="fa fa-bell"></i>
+  </button>
+  <span class="number-text alarm-time" *ngIf="state.alarm.active" (click)="onEditAlarm()">
+    {{state.alarm.hours}}:{{state.alarm.minutes}}
+  </span>
+  <p-dialog header="Будильник" [(visible)]="edit" [draggable]="false" closeIcon="fas fa-times" [modal]="true"
+    appendTo="body">
+    <div class="d-flex">
+      <div class="p1">
+        <p-dropdown styleClass="number-text dropdown-time" panelStyleClass="number-text dropdown-time"
+          [options]="hoursList" [(ngModel)]="state.alarm.hours" appendTo="body"></p-dropdown>
+      </div>
+      <div class="p1">
+        <p-dropdown styleClass="number-text dropdown-time" panelStyleClass="number-text dropdown-time"
+          [options]="minutesList" [(ngModel)]="state.alarm.minutes" appendTo="body"></p-dropdown>
+      </div>
+    </div>
+  </p-dialog>
+</div>

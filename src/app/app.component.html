@@ -1,0 +1,18 @@
+<div class="run-app-panel" *ngIf="!isRun">
+  <button class="action-button run-clock" (click)="onClick(mainContent)">
+    <i class="fa fa-play"></i>
+  </button>
+</div>
+
+<main class="content" #mainContent>
+  <panel-clock></panel-clock>
+  <panel-asistent></panel-asistent>
+  <div class="tools">
+    <div class="tool tool-response">
+      <panel-alarm></panel-alarm>
+    </div>
+    <div class="tool tool-fixed">
+      <panel-announce-time></panel-announce-time>
+    </div>
+  </div>
+</main>
