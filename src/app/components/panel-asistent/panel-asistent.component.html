@@ -1,5 +1,6 @@
 <div class="panel-asistent">
-    <button class="action-button asistent-turn" [ngClass]="{'active': active}" (click)="active = !active">
+    <button class="action-button asistent-turn" [ngClass]="{'active': active}" (click)="onActivate()">
       <i class="fas fa-podcast"></i>
     </button>
+    {{text}}
 </div>
