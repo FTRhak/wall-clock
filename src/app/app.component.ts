@@ -8,7 +8,8 @@ import { AppStateService } from './services/app-state.service';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  public isRun = true;
+  title = 'Wall Clock';
+  public isRun = false;
   constructor(private appState: AppStateService) { }
 
   ngOnInit() {

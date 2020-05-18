@@ -7,7 +7,6 @@ import { AppStateService } from 'src/app/services/app-state.service';
   styleUrls: ['./panel-clock.component.less']
 })
 export class PanelClockComponent implements OnInit, OnDestroy {
-  @Input() dateTime: Date = new Date();
   constructor(public state: AppStateService) { }
 
   ngOnInit() { }

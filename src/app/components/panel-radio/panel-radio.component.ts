@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppStateService } from 'src/app/services/app-state.service';
 import { RadioService } from 'src/app/services/radio.service';
 

@@ -43,7 +43,7 @@ export class RadioService {
 
   play(station: RedioStation) {
     this.stop();
-    let sound: any;
+    let sound: HowlModel;
     this.station = station;
     if (this.station.howl) {
       sound = this.station.howl;
@@ -53,7 +53,7 @@ export class RadioService {
         html5: true,
         format: ['mp3', 'aac']
       });
-      console.log('===', sound);
+      // console.log('===', sound);
     }
     sound.play();
   }

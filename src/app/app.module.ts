@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { DropdownModule } from 'primeng/dropdown';
 import { DialogModule } from 'primeng/dialog';
 
@@ -14,6 +14,9 @@ import { VoiceService } from './services/voice.service';
 import { FormsModule } from '@angular/forms';
 import { PanelRadioComponent } from './components/panel-radio/panel-radio.component';
 import { RadioService } from './services/radio.service';
+import { ErrorHandlerService } from './services/error-handler.service';
+import { PanelStatusComponent } from './components/panel-status/panel-status.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,8 @@ import { RadioService } from './services/radio.service';
     PanelAlarmComponent,
     PanelAsistentComponent,
     PanelAnnounceTimeComponent,
-    PanelRadioComponent
+    PanelRadioComponent,
+    PanelStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,11 @@ import { RadioService } from './services/radio.service';
     DialogModule,
     FormsModule
   ],
-  providers: [AppStateService, VoiceService, RadioService],
+  providers: [
+    { provide: ErrorHandler, useClass: ErrorHandlerService },
+    AppStateService,
+    VoiceService, RadioService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

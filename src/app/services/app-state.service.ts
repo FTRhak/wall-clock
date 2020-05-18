@@ -24,8 +24,8 @@ export class AppStateService {
 
   startTimer() {
     let prevSecond = this.dateTime.getSeconds();
-    let currentSeconds;
-    let currentMinute;
+    let currentSeconds: number;
+    let currentMinute: number;
     this.timeTick$ = interval(1000).subscribe(() => {
       this.dateTime = new Date();
       // ---------------------------

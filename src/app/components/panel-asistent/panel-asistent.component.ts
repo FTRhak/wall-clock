@@ -25,8 +25,6 @@ export class PanelAsistentComponent implements OnInit, OnDestroy {
 
     speechRecognitionList.addFromString(this.grammar, 1);
 
-
-
     this.recognition.grammars = speechRecognitionList;
     this.recognition.continuous = false;
     this.recognition.lang = 'uk';
