@@ -76,9 +76,18 @@ describe('AppComponent', () => {
   }));
 
   it('should create the app', () => {
+    const stateService = TestBed.inject(AppStateService);
+    spyOn(stateService, 'startTimer').and.callThrough();
+    spyOn(stateService, 'stopTimer').and.callThrough();
+
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
+    fixture.detectChanges();
     expect(app).toBeTruthy();
+    expect(stateService.startTimer).toHaveBeenCalled();
+    expect(stateService.stopTimer).not.toHaveBeenCalled();
+    app.ngOnDestroy();
+    expect(stateService.stopTimer).toHaveBeenCalled();
   });
 
   it(`should have as title 'Wall Clock'`, () => {
@@ -87,4 +96,69 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Wall Clock');
   });
 
+  it(`should call requestFullscreen function after click`, () => {
+    const target = {
+      requestFullscreen: () => { }
+    };
+    spyOn(target, 'requestFullscreen').and.callThrough();
+
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    app.onClick(target);
+    expect(target.requestFullscreen).toHaveBeenCalled();
+  });
+
+  it(`should call mozRequestFullScreen function after click`, () => {
+    const target = {
+      mozRequestFullScreen: () => { }
+    };
+    spyOn(target, 'mozRequestFullScreen').and.callThrough();
+
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    app.onClick(target);
+    expect(target.mozRequestFullScreen).toHaveBeenCalled();
+  });
+
+  it(`should call webkitRequestFullscreen function after click`, () => {
+    const target = {
+      webkitRequestFullscreen: () => { }
+    };
+    spyOn(target, 'webkitRequestFullscreen').and.callThrough();
+
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    app.onClick(target);
+    expect(target.webkitRequestFullscreen).toHaveBeenCalled();
+  });
+
+  it(`should call msRequestFullscreen function after click`, () => {
+    const target = {
+      msRequestFullscreen: () => { }
+    };
+    spyOn(target, 'msRequestFullscreen').and.callThrough();
+
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    app.onClick(target);
+    expect(target.msRequestFullscreen).toHaveBeenCalled();
+  });
+
+  it(`should not call requestFullscreen function after click if not support`, () => {
+    const target = {    };
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    fixture.detectChanges();
+
+    app.onClick(target);
+    expect(app.isRun).toBe(true);
+  });
 });
