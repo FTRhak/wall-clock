@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppStateService } from 'src/app/services/app-state.service';
-import { RadioService } from 'src/app/services/radio.service';
+import { WidgetType } from 'src/app/models/widget-type.enum';
 
 @Component({
   selector: 'panel-radio',
@@ -8,24 +8,23 @@ import { RadioService } from 'src/app/services/radio.service';
   styleUrls: ['./panel-radio.component.less']
 })
 export class PanelRadioComponent implements OnInit, OnDestroy {
-  public edit = false;
-
+  get active() {
+    return this.state.activeWidget === WidgetType.Radio;
+  }
   constructor(
-    public state: AppStateService,
-    public radioManager: RadioService
+    public state: AppStateService
   ) { }
 
   ngOnInit() {
-    this.radioManager.loadRadioList();
   }
 
   ngOnDestroy() { }
 
   onTurnOnRadio() {
-    this.edit = true;
-  }
-
-  onPlayRadioChanel(station) {
-    this.radioManager.play(station);
+    if (this.state.activeWidget === WidgetType.Radio) {
+      this.state.activeWidget = null;
+    } else {
+      this.state.activeWidget = WidgetType.Radio;
+    }
   }
 }

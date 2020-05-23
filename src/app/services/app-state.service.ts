@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { Subscription, interval } from 'rxjs';
 import { hoursListNames, minutesListNames } from './time-text';
 import { VoiceService } from './voice.service';
+import { WidgetType } from '../models/widget-type.enum';
 
 @Injectable()
 export class AppStateService {
+  public activeWidget: WidgetType = null;
+
   private dateTime: Date = new Date();
   private timeTick$: Subscription;
 

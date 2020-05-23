@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { AppStateService } from 'src/app/services/app-state.service';
+import { WidgetType } from 'src/app/models/widget-type.enum';
 
 @Component({
   selector: 'panel-alarm',
@@ -7,21 +8,10 @@ import { AppStateService } from 'src/app/services/app-state.service';
   styleUrls: ['./panel-alarm.component.less']
 })
 export class PanelAlarmComponent implements OnInit, OnDestroy {
-  public edit = false;
-  public hoursList = [];
-  public minutesList = [];
-  public alarmHour = 0;
-  constructor(public state: AppStateService) {
-    this.hoursList = [];
-    for (let i = 0; i < 24; i++) {
-      this.hoursList.push({ label: (i < 10 ? '0' : '') + i, value: i });
-    }
-    this.minutesList = [];
-    for (let i = 0; i < 12; i++) {
-      const minutes = i * 5;
-      this.minutesList.push({ label: (minutes < 10 ? '0' : '') + minutes, value: minutes });
-    }
+  get active() {
+    return this.state.activeWidget === WidgetType.Alarm;
   }
+  constructor(public state: AppStateService) { }
 
   ngOnInit() { }
 
@@ -31,7 +21,11 @@ export class PanelAlarmComponent implements OnInit, OnDestroy {
     return [...Array(n).keys()];
   }
 
-  onEditAlarm() {
-    this.edit = !this.edit;
+  onToggleAlarm() {
+    if (this.state.activeWidget === WidgetType.Alarm) {
+      this.state.activeWidget = null;
+    } else {
+      this.state.activeWidget = WidgetType.Alarm;
+    }
   }
 }

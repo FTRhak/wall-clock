@@ -4,7 +4,7 @@
   </button>
 </div>
 
-<main class="content" #mainContent>
+<main class="content" #mainContent [ngClass]="{'widget-activated': appState.activeWidget}">
   <div class="sidebar-clock">
     <div class="clock">
       <div class="clock-container">
@@ -17,11 +17,9 @@
       <div class="tool tool-response">
         <panel-alarm></panel-alarm>
       </div>
-      <!--
       <div class="tool tool-fixed">
         <panel-asistent></panel-asistent>
       </div>
-      -->
       <div class="tool tool-fixed">
         <panel-radio></panel-radio>
       </div>
@@ -30,5 +28,12 @@
       </div>
     </div>
   </div>
+  <div class="sidebar-widget" *ngIf="appState.activeWidget">
+    <div class="widgets">
+      
+    </div>
+  </div>
 </main>
+<!--
 <panel-status></panel-status>
+-->

@@ -1,20 +1,6 @@
 <div class="panel-radio">
-  <button class="action-button alart-turn" [ngClass]="{'active': state.alarm.active}"
+  <button class="action-button alart-turn" [ngClass]="{'active': active}"
     (click)="onTurnOnRadio()">
     <i class="fas fa-broadcast-tower"></i>
   </button>
-  <p-dialog header="Радіо" [(visible)]="edit" [draggable]="true" closeIcon="fas fa-times" [modal]="false"
-    appendTo="body">
-    Radio music
-    <ul>
-      <li *ngFor="let item of radioManager.stations" (click)="onPlayRadioChanel(item)">
-        <div>{{item.title}}</div>
-      </li>
-    </ul>
-    <hr/>
-    <audio controls>
-      <source src="http://199.233.234.34:25373/listen.pls?sid=1" type="audio/mpeg">
-    </audio>
-    
-  </p-dialog>
 </div>

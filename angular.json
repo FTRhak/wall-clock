@@ -27,8 +27,6 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles/prime/theme.less",
-              "src/styles/prime/primeng.less",
               "src/styles.less"
             ],
             "scripts": [

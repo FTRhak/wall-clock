@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppStateService } from './services/app-state.service';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,8 +8,10 @@ import { AppStateService } from './services/app-state.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Wall Clock';
-  public isRun = true;
-  constructor(private appState: AppStateService) { }
+  public isRun = false;
+  constructor(
+    public appState: AppStateService
+  ) { }
 
   ngOnInit() {
     this.appState.startTimer();

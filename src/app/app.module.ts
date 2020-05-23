@@ -31,14 +31,13 @@ import { PanelStatusComponent } from './components/panel-status/panel-status.com
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    DropdownModule,
-    DialogModule,
     FormsModule
   ],
   providers: [
     { provide: ErrorHandler, useClass: ErrorHandlerService },
     AppStateService,
-    VoiceService, RadioService
+    VoiceService,
+    RadioService
   ],
   bootstrap: [AppComponent]
 })
