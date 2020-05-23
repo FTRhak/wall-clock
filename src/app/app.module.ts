@@ -16,6 +16,8 @@ import { PanelRadioComponent } from './components/panel-radio/panel-radio.compon
 import { RadioService } from './services/radio.service';
 import { ErrorHandlerService } from './services/error-handler.service';
 import { PanelStatusComponent } from './components/panel-status/panel-status.component';
+import { WidgetRadioComponent } from './widgets/widget-radio/widget-radio.component';
+import { WidgetAlarmComponent } from './widgets/widget-alarm/widget-alarm.component';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { PanelStatusComponent } from './components/panel-status/panel-status.com
     PanelAsistentComponent,
     PanelAnnounceTimeComponent,
     PanelRadioComponent,
-    PanelStatusComponent
+    PanelStatusComponent,
+    WidgetRadioComponent,
+    WidgetAlarmComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,7 @@ import { PanelStatusComponent } from './components/panel-status/panel-status.com
     FormsModule
   ],
   providers: [
-    { provide: ErrorHandler, useClass: ErrorHandlerService },
+    // { provide: ErrorHandler, useClass: ErrorHandlerService },
     AppStateService,
     VoiceService,
     RadioService

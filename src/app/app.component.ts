@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppStateService } from './services/app-state.service';
+import { WidgetType } from './models/widget-type.enum';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,10 @@ import { AppStateService } from './services/app-state.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Wall Clock';
-  public isRun = false;
+  public isRun = true;
+  get WTypes() {
+    return WidgetType;
+  }
   constructor(
     public appState: AppStateService
   ) { }

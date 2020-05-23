@@ -30,7 +30,8 @@
   </div>
   <div class="sidebar-widget" *ngIf="appState.activeWidget">
     <div class="widgets">
-      
+      <widget-radio *ngIf="appState.activeWidget === WTypes.Radio"></widget-radio>
+      <widget-alarm *ngIf="appState.activeWidget === WTypes.Alarm"></widget-alarm>
     </div>
   </div>
 </main>
