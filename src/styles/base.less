@@ -2,23 +2,23 @@ body {
   background-color: #000000;
   color: #FFFFFF;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1vw/1vh;
+  font-size: 12px;
   padding: 0px;
   margin: 0px;
+  box-sizing: border-box;
   user-select: none;
   line-height: 1;
 }
 
-.p1 {
-  padding: 0em 1em;
-}
-
-.d-flex {
-  display: flex;
-}
-
-.d-relative {
-  position: relative;
+.content {
+  background-color: #000000;
+  color: #FFFFFF;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  user-select: none;
+  line-height: 1;
 }
 
 .run-app-panel {
@@ -37,14 +37,6 @@ body {
     transform: translate(-50%, -50%);
     font-size: 24em;
   }
-}
-
-.content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.95);
-  width: 100%;
 }
 
 .footer-panel {
@@ -68,67 +60,12 @@ body {
   }
 }
 
-.time {
-  font-size: 34em;
-  position: relative;
-  margin-left: 0.1em;
-  display: inline-block;
-
-  &:before {
-    content: '88:88';
-    position: absolute;
-    color: rgba(255, 255, 255, 0.1);
-    left: 0em;
-    top: 0em;
-  }
-}
-.seconds {
-  font-size: 16em;
-  position: relative;
-  display: inline-block;
-  &:before {
-    content: '88';
-    position: absolute;
-    color: rgba(255, 255, 255, 0.1);
-    left: 0em;
-    top: 0em;
-  }
-}
 
 .date {
-  font-size: 6em;
-  //margin-top: -0.7em;
-  padding-left: 1em;
+  font-size: 5em;
+  padding-left: 0.5em;
 }
 
-.action-button {
-  color: rgba(103, 103, 103, 0.8);
-  background: none;
-  border: none;
-  padding: 0em;
-  margin: 0em;
-  font-size: 8em;
-  width: 1.6em;
-  height: 1.6em;
-  border-radius: 50%;
-  outline: none;
-
-  &.button-small {
-    font-size: 5em;
-    width: 1.2em;
-    height: 1.2em;
-    line-height: 1.3em;
-    vertical-align: super;
-  }
-
-  &:active {
-    background-color: rgba(255, 255,255, 0.2);
-  }
-
-  &.active {
-    color: #FFFFFF;
-  }
-}
 
 .alarm-time {
   font-size: 8em;
@@ -151,15 +88,4 @@ body {
 
 .alarm-edit {
   display: inline-block;
-}
-
-.tools {
-  display: flex;
-  .tool-response {
-    flex-basis: 0;
-    flex-grow: 1;
-  }
-  .tool-fixed {
-    float: 0 0 auto;
-  }
 }

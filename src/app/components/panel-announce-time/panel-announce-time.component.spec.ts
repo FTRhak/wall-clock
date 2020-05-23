@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { AppStateService } from 'src/app/services/app-state.service';
+import { VoiceService } from 'src/app/services/voice.service';
 import { PanelAnnounceTimeComponent } from './panel-announce-time.component';
 
 describe('PanelAnnounceTimeComponent', () => {
@@ -8,7 +9,11 @@ describe('PanelAnnounceTimeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [PanelAnnounceTimeComponent]
+      declarations: [PanelAnnounceTimeComponent],
+      providers: [
+        AppStateService,
+        { provide: VoiceService, useValue: {} }
+      ]
     }).compileComponents();
   }));
 

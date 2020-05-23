@@ -1,3 +1,4 @@
-<footer class="footer-panel" *ngIf="status.lastError">
-  {{status.lastError}}
+<footer class="footer-panel" *ngIf="status.lastError || status.lastWarning">
+  <span>{{status.lastError}}</span>
+  <span>{{status.lastWarning}}</span>
 </footer>

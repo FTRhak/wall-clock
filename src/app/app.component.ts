@@ -9,7 +9,7 @@ import { AppStateService } from './services/app-state.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Wall Clock';
-  public isRun = false;
+  public isRun = true;
   constructor(private appState: AppStateService) { }
 
   ngOnInit() {

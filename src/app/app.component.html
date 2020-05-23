@@ -5,17 +5,29 @@
 </div>
 
 <main class="content" #mainContent>
-  <panel-clock></panel-clock>
-  <panel-asistent></panel-asistent>
-  <div class="tools">
-    <div class="tool tool-response">
-      <panel-alarm></panel-alarm>
+  <div class="sidebar-clock">
+    <div class="clock">
+      <div class="clock-container">
+        <panel-clock></panel-clock>
+      </div>
     </div>
-    <div class="tool tool-fixed">
-      <panel-radio></panel-radio>
-    </div>
-    <div class="tool tool-fixed">
-      <panel-announce-time></panel-announce-time>
+  </div>
+  <div class="sidebar-tools">
+    <div class="tools">
+      <div class="tool tool-response">
+        <panel-alarm></panel-alarm>
+      </div>
+      <!--
+      <div class="tool tool-fixed">
+        <panel-asistent></panel-asistent>
+      </div>
+      -->
+      <div class="tool tool-fixed">
+        <panel-radio></panel-radio>
+      </div>
+      <div class="tool tool-fixed">
+        <panel-announce-time></panel-announce-time>
+      </div>
     </div>
   </div>
 </main>
