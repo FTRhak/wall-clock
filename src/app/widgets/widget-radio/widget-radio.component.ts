@@ -14,9 +14,21 @@ export class WidgetRadioComponent implements OnInit {
   get selectedStation(): RedioStation {
     return this.radio.station || {name: ''};
   }
+
+  get volume() {
+    return this.radio.volume * 100;
+  }
   constructor(private radio: RadioService) { }
 
   ngOnInit(): void {
+  }
+
+  volumeIncrease() {
+    this.radio.volumeIncrease();
+  }
+
+  volumeDecrease() {
+    this.radio.volumeDecrease();
   }
 
   onSelectStation(item) {
