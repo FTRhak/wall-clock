@@ -3,7 +3,6 @@
     <i class="fa fa-play"></i>
   </button>
 </div>
-
 <main class="content" #mainContent [ngClass]="{'widget-activated': appState.activeWidget}">
   <div class="sidebar-clock">
     <div class="clock">
@@ -14,24 +13,39 @@
   </div>
   <div class="sidebar-tools">
     <div class="tools">
-      <div class="tool tool-response">
-        <panel-alarm></panel-alarm>
-      </div>
-      <div class="tool tool-fixed">
-        <panel-asistent></panel-asistent>
-      </div>
-      <div class="tool tool-fixed">
-        <panel-radio></panel-radio>
-      </div>
-      <div class="tool tool-fixed">
-        <panel-announce-time></panel-announce-time>
-      </div>
+      <div class="tools-actions">
+        <div class="tool tool-response">
+          <button class="action-button" [toggleFunction]="'Alarm'">
+            <i class="fa fa-bell"></i>
+          </button>
+        </div>
+        <div class="tool tool-fixed" style="display: none;">
+          <panel-asistent></panel-asistent>
+        </div>
+        <div class="tool tool-fixed">
+          <button class="action-button" [toggleFunction]="'Weather'">
+            <i class="fa fa-cloud"></i>
+          </button>
+        </div>
+        <div class="tool tool-fixed">
+          <button class="action-button" [toggleFunction]="'Radio'">
+            <i class="fas fa-broadcast-tower"></i>
+          </button>
+        </div>
+        <div class="tool tool-fixed">
+          <button class="action-button" [toggleFunction]="'AnnounceTime'">
+            <i class="fab fa-creative-commons-sampling"></i>
+          </button>
+        </div>
+    </div>
     </div>
   </div>
   <div class="sidebar-widget" *ngIf="appState.activeWidget">
     <div class="widgets">
       <widget-radio *ngIf="appState.activeWidget === WTypes.Radio"></widget-radio>
       <widget-alarm *ngIf="appState.activeWidget === WTypes.Alarm"></widget-alarm>
+      <widget-weather *ngIf="appState.activeWidget === WTypes.Weather"></widget-weather>
+      <widget-announce-time *ngIf="appState.activeWidget === WTypes.AnnounceTime"></widget-announce-time>
     </div>
   </div>
 </main>

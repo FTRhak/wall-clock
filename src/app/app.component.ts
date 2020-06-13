@@ -9,7 +9,7 @@ import { WidgetType } from './models/widget-type.enum';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Wall Clock';
-  public isRun = true;
+  public isRun = false;
   get WTypes() {
     return WidgetType;
   }
