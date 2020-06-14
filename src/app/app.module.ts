@@ -18,6 +18,7 @@ import { WidgetAlarmComponent } from './widgets/widget-alarm/widget-alarm.compon
 import { ToggleFunctionDirective } from './directives/toggle-function.directive';
 import { WidgetAnnounceTimeComponent } from './widgets/widget-announce-time/widget-announce-time.component';
 import { WidgetWeatherComponent } from './widgets/widget-weather/widget-weather.component';
+import { PanelStatesComponent } from './components/panel-states/panel-states.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { WidgetWeatherComponent } from './widgets/widget-weather/widget-weather.
     WidgetAlarmComponent,
     ToggleFunctionDirective,
     WidgetAnnounceTimeComponent,
-    WidgetWeatherComponent
+    WidgetWeatherComponent,
+    PanelStatesComponent
   ],
   imports: [
     BrowserModule,

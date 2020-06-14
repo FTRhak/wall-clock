@@ -1,1 +1,28 @@
-<p>widget-announce-time works!</p>
+<div class="widget-announce-time">
+  <div class="state-toggle">
+    <div class="input-checkbox">
+      <input id="id_state" type="checkbox" value="1" [checked]="state" (change)="onChangeState($event)">
+      <label for="id_state"></label>
+    </div>
+    <label class="label" for="id_state">Активувати</label>
+  </div>
+  <div class="time-range">
+    <h6>Години роботи:</h6>
+    <div>
+      <label class="label">від</label>
+      <select class="input-select" [(ngModel)]="startHours" (change)="onChangeStartHour()">
+        <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
+      </select>
+      <label class="label">до</label>
+      <select class="input-select" [(ngModel)]="stopHours" (change)="onChangeStopHour()">
+        <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
+      </select>
+    </div>
+    <div class="time-steps">
+      <label class="label">крок:</label>
+      <select class="input-select" [(ngModel)]="step" (change)="onChangeStep()" disabled>
+        <option *ngFor="let step of steps" [value]="step">{{step}}</option>
+      </select>
+    </div>
+  </div>
+</div>

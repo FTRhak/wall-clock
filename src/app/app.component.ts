@@ -22,6 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.appState.updateStore();
     this.appState.stopTimer();
   }
 
