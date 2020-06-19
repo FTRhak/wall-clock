@@ -1,9 +1,10 @@
+
 * {
   box-sizing: border-box;
 }
 body {
-  background-color: #000000;
-  color: #FFFFFF;
+  background-color: @bgColor;
+  color: @baseColor;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 12px;
   padding: 0px;
@@ -18,8 +19,8 @@ button {
 }
 
 .content {
-  background-color: #000000;
-  color: #FFFFFF;
+  background-color: @bgColor;
+  color: @baseColor;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding: 0px;
   margin: 0px;
@@ -29,7 +30,7 @@ button {
 }
 
 .run-app-panel {
-  background-color: #000000;
+  background-color: @bgColor;
   position: absolute;
   top: 0em;
   left: 0em;
@@ -37,7 +38,7 @@ button {
   bottom: 0em;
   z-index: 1;
   .run-clock {
-    color: #FFFFFF;
+    color: @baseColor;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -74,8 +75,8 @@ button {
   font-size: 8em;
   background: none;
   border: none;
-  background-color: #000000;
-  color: #FFFFFF;
+  background-color: @bgColor;
+  color: @baseColor;
   outline: none;
   padding: 0px;
   margin: 0px;

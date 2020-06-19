@@ -44,6 +44,7 @@
         color: rgba(255, 255, 255, 0.1);
         left: 0em;
         top: 0em;
+        z-index: -1;
       }
     }
     .seconds {
@@ -57,6 +58,7 @@
         color: rgba(255, 255, 255, 0.1);
         left: 0em;
         top: 0em;
+        z-index: -1;
       }
     }
     .date {
@@ -107,7 +109,7 @@
   }
 
   .action-button {
-    color: rgba(103, 103, 103, 0.8);
+    color: @noActive;
     background: none;
     padding: 0em;
     margin: 0em;
@@ -129,11 +131,11 @@
   
     //&:hover,
     &:active {
-      background-color: rgba(255, 255,255, 0.2);
+      background-color: lighten(@baseColor, 30%);
     }
   
     &.active {
-      color: #FFFFFF;
+      color: @baseColor;
     }
   }
 
