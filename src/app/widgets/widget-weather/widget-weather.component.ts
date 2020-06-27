@@ -1,5 +1,8 @@
 import { Component, OnInit, Renderer2, ElementRef } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { AsyncSubject } from 'rxjs';
+import { VoiceService } from 'src/app/services/voice.service';
+import { SkyMap } from './sky-map.enum';
 
 @Component({
   selector: 'widget-weather',
@@ -7,34 +10,73 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
   styleUrls: ['./widget-weather.component.less']
 })
 export class WidgetWeatherComponent implements OnInit {
+  public day1: any;
+  public day2: any;
+  public day3: any;
+  public day4: any;
+
   constructor(
-    private http: HttpClient,
     private el: ElementRef,
-    private render: Renderer2
+    private voice: VoiceService
   ) { }
 
   ngOnInit(): void {
-    // https://meteoprog.ua/js/winformer.min.js?id=100
-    /*const script = document.createElement('script');
-    '<script type="text/javascript" src="https://meteoprog.ua/js/winformer.min.js?id=100"></script>';
-    this.render.appendChild(this.el.nativeElement.children[0], script);
-    script.type = 'text/javascript';
-    script.src = 'https://meteoprog.ua/js/winformer.min.js?id=100';*/
-    this.getData();
-
-  }
-
-  private getRequestOptions() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Cache-Control': 'no-cache',
-      'access-control-allow-origin': '*',
-      'access-control-allow-headers': 'origin, x-requested-with, content-type',
-      'access-control-allow-methods': 'GET, HEAD, OPTIONS, POST, PUT, TRACE, DELETE'
+    this.getData().subscribe(res => {
+      console.log('weather complete');
+      this.day1 = this.getDayInfo('.constructor__ext-foreacst-1');
+      this.day2 = this.getDayInfo('.constructor__ext-foreacst-2');
+      this.day3 = this.getDayInfo('.constructor__ext-foreacst-3');
+      this.day4 = this.getDayInfo('.constructor__ext-foreacst-4');
     });
-    return { headers, withCredentials: true };
   }
+
+  get dEl() {
+    return this.el.nativeElement;
+  }
+
+  tellWeather(dayShift, day) {
+    let text = '';
+    switch (dayShift) {
+      case 0: {
+        text += 'Сьогодні ';
+        break;
+      }
+      case 1: {
+        text += 'Завтра ';
+        break;
+      }
+      case 2: {
+        text += 'Післязавтра ';
+        break;
+      }
+      case 3: {
+        text += 'Через три дні ';
+        break;
+      }
+      case 4: {
+        text += 'Через чотири дні ';
+        break;
+      }
+    }
+    text += 'погода. . . ';
+    text += day[0];
+    text += ' . . .';
+    text += day[1];
+    this.voice.runResponsiveVoice(text);
+  }
+
+  getDayInfo(container) {
+    const temperature = this.dEl.querySelector(container)
+      .querySelector('.constructor__ext-foreacst-temp').innerText;
+    const sky = this.dEl.querySelector(container)
+      .querySelector('.icon-weather').getAttribute('class');
+    const skyKey = sky.split(' ').filter(el => ['icon-weather', 'icon-48x50'].indexOf(el) === -1);
+    const skyName = SkyMap(skyKey.length ? skyKey[0] : '');
+    return [temperature, skyName];
+  }
+
   getData() {
+    const aSubject = new AsyncSubject();
     let c;
     function u(i) {
       let e, render, n, o, r;
@@ -55,19 +97,24 @@ export class WidgetWeatherComponent implements OnInit {
           ++i < c.length && u(i);
         }
         ,
-        n = new XMLHttpRequest,
+        n = new XMLHttpRequest(),
         o = JSON.parse(e),
         r = o.domain.substring(0, o.domain.length - 1) + '/widget_v2/wshow/' + o.id + '/?nocache=1',
         n.open('POST', r, !0),
         n.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'),
         n.onreadystatechange = () => {
-          4 === n.readyState && 200 === n.status && render(n.responseText)
+          if (4 === n.readyState && 200 === n.status) {
+            render(n.responseText);
+            aSubject.next(n.responseText);
+            aSubject.complete();
+          }
         }
         ,
         n.send('params=' + e)) : ++i < c.length && u(i)
     }
     c = document.querySelectorAll('.meteoprog-informer');
     u(0);
+    return aSubject;
   }
 
 }

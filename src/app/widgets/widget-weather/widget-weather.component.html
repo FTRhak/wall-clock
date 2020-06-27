@@ -3,7 +3,7 @@
 
   <link type="text/css" rel="stylesheet" href="https://meteoprog.ua/css/winformer.min.css?id=100">
 
-  <div class="meteoprog-informer" style="width: 500px" data-params='{"city_ids":"19703","domain":"https://meteoprog.ua/","id":"5ef7898398485263798b4693","lang":"ua"}'>
+  <div class="meteoprog-informer" style="width: 100%" data-params='{"city_ids":"19703","domain":"https://meteoprog.ua/","id":"5ef7898398485263798b4693","lang":"ua"}'>
 
     
       <a title="Погода в місті Городок" target="_blank" href="https://meteoprog.ua/weather/Gorodok">
@@ -18,4 +18,18 @@
   </div>
    
   
+</div>
+<div class="d-flex mt-2 text-center">
+  <div class="flex-1">
+    <button class="weather-day" (click)="tellWeather(1, day1)">+1</button>
+  </div>
+  <div class="flex-1">
+    <button class="weather-day" (click)="tellWeather(2, day2)">+2</button>
+  </div>
+  <div class="flex-1">
+    <button class="weather-day" (click)="tellWeather(3, day3)">+3</button>
+  </div>
+  <div class="flex-1">
+    <button class="weather-day" (click)="tellWeather(4, day4)">+4</button>
+  </div>
 </div>
