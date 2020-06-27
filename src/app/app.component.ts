@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppStateService } from './services/app-state.service';
 import { WidgetType } from './models/widget-type.enum';
+import { of } from 'rxjs';
+import { mergeMap, switchMap, finalize, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',

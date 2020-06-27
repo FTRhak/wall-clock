@@ -1,20 +1,13 @@
-.side-panel {
-  background-color: @bgSidebarColor;
-  border-radius: 2vh;
-  box-shadow: inset 0 0 1px 2px fade(@baseColor, 20%);
-}
 
 @media screen and (orientation:landscape) {
   .content {
-    font-size: 1vw;
     height: 100vh;
     display: grid;
     grid-template-rows: 75% 25%;
     grid-template-columns: 100%;
   }
   .sidebar-clock {
-    font-size: 1vh;
-    padding: 2em 2em 1em 2em;
+    padding: 2vh 2vh 1vh 2vh;
     position: relative;
     grid-row-start: 1;
     grid-row-end: 2;
@@ -22,9 +15,86 @@
     grid-column-end: 2;
   }
 
+  .sidebar-tools {
+    padding: 1vh 2vh 2vh 2vh;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .clock, .tools {
+    .side-panel();
+    height: 100%;
+    padding: 10px;
+  }
+  .clock-container,
+  .panel-clock {
+    height: 100%;
+    position: relative;
+  }
+  .time {
+    font-size: 41vw;
+    line-height: 30vw;
+  }
+
+  .tools {
+    height: 100%;
+    position: relative;
+    padding: 1em;
+    display: flex;
+    .side-panel();
+
+    .tools-actions {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      width: 100%;
+    }
+  
+    .tool-response {
+      flex-basis: 0;
+      flex-grow: 1;
+    }
+    .tool-fixed {
+      float: 0 0 auto;
+    }
+  }
+
+  .action-button {
+    color: @noActive;
+    background: none;
+    padding: 0em;
+    margin: 0em;
+    font-size: 6em;
+    width: 1.5em;
+    height: 1.5em;
+    outline: none;
+    border-radius: 50%;
+    border: none;
+    //border: 0.04em solid rgba(203, 203, 203, 0.1);
+  
+    &.button-small {
+      font-size: 3em;
+      width: 1.2em;
+      height: 1.2em;
+      line-height: 1.3em;
+      vertical-align: super;
+    }
+  
+    //&:hover,
+    &:active {
+      background-color: @noActive;
+    }
+  
+    &.active {
+      color: @baseColor;
+    }
+  }
+/*
   .clock {
     height: 100%;
-    font-size: ~'min(1vw*0.3, 1vh*0.6)';
+    font-size: ~'min(1vw*0.37, 1vh*0.6)';
     display: flex;
     justify-content: center;
     .side-panel();
@@ -36,6 +106,13 @@
     }
     .panel-clock {
       font-size: 3.3em;
+      transform: scaleY(1.3);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -40em;
+      margin-top: -13em;
+
     }
 
     .time {
@@ -72,8 +149,10 @@
       padding-left: 0.5em;
     }
   }
-
+*/
   // ------------------------------------------
+
+/*
   .sidebar-tools {
     padding: 1em 2em 2em 2em;
     font-size: 1vh;
@@ -202,4 +281,5 @@
       grid-row-end: 3;
     }
   }
+  */
 }

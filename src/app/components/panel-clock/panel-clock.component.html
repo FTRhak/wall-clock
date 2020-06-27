@@ -1,7 +1,5 @@
 <div class="panel-clock d-relative">
   <div class="number-text text-center" (click)="onPressTime()">
     <span class="time">{{state.time | date : 'HH:mm'}}</span>
-    <span class="seconds">{{state.time | date : 'ss'}}</span>
   </div>
-  <div class="number-text date">{{state.time | date : 'EE dd.MM.yyyy'}}</div>
 </div>
