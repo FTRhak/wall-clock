@@ -91,7 +91,7 @@ export class AppStateService {
     const minutes = this.dateTime.getMinutes();
     const minutesText = minutesListNames(minutes);
     const timeString = `${hourText} година.  ${minutesText}`;
-    this.voice.runResponsiveVoice(timeString);
+    // this.voice.runResponsiveVoice(timeString);
     this.voice.runPlayAudioTime(hour, minutes);
   }
 
@@ -99,7 +99,10 @@ export class AppStateService {
     if (this.annoncer) {
       const hour = this.dateTime.getHours();
       const minutes = this.dateTime.getMinutes();
-      if ((hour > this.annoncerModel.startHours && hour < this.annoncerModel.stopHours) && minutes === 0) {
+      console.log('---H', hour);
+      console.log('startHours', this.annoncerModel.startHours);
+      console.log('stopHours', this.annoncerModel.stopHours);
+      if ((hour >= this.annoncerModel.startHours && hour <= this.annoncerModel.stopHours) && minutes === 0) {
         this.annonceTime();
       }
     }

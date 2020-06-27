@@ -15,7 +15,7 @@
       </select>
       <label class="label">до</label>
       <select class="input-select" [(ngModel)]="stopHours" (change)="onChangeStopHour()">
-        <option *ngFor="let hour of hours" [value]="hour">{{hour}}</option>
+        <option *ngFor="let hour of [] | hourLimit : startHours" [value]="hour">{{hour}}</option>
       </select>
     </div>
     <div class="time-steps">

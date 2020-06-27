@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppStateService } from 'src/app/services/app-state.service';
 import { StoreTypeData } from 'src/app/models/store-type-data.enum';
 import { range } from 'rxjs';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'widget-announce-time',
@@ -29,13 +30,24 @@ export class WidgetAnnounceTimeComponent implements OnInit {
     this.state = ev.target.checked;
     this.appState.stateChangeEvent.next({ type: StoreTypeData.Annoncer, value: this.state });
   }
-  onChangeStartHour() {
+
+  changeHourseRange() {
+    this.startHours *= 1;
+    this.stopHours *= 1;
+    if (this.startHours > this.stopHours) {
+      this.stopHours = this.startHours;
+    }
     this.appState.stateChangeEvent.next({ type: StoreTypeData.AnnoncerStart, value: this.startHours });
-  }
-  onChangeStopHour() {
     this.appState.stateChangeEvent.next({ type: StoreTypeData.AnnoncerStop, value: this.stopHours });
   }
-  onChangeStep(){
+
+  onChangeStartHour() {
+    this.changeHourseRange();
+  }
+  onChangeStopHour() {
+    this.changeHourseRange();
+  }
+  onChangeStep() {
     this.appState.stateChangeEvent.next({ type: StoreTypeData.AnnoncerStep, value: this.step });
   }
 

@@ -19,6 +19,7 @@ import { ToggleFunctionDirective } from './directives/toggle-function.directive'
 import { WidgetAnnounceTimeComponent } from './widgets/widget-announce-time/widget-announce-time.component';
 import { WidgetWeatherComponent } from './widgets/widget-weather/widget-weather.component';
 import { PanelStatesComponent } from './components/panel-states/panel-states.component';
+import { HourLimitPipe } from './widgets/widget-announce-time/hour-limit.pipe';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { PanelStatesComponent } from './components/panel-states/panel-states.com
     ToggleFunctionDirective,
     WidgetAnnounceTimeComponent,
     WidgetWeatherComponent,
-    PanelStatesComponent
+    PanelStatesComponent,
+    HourLimitPipe
   ],
   imports: [
     BrowserModule,
