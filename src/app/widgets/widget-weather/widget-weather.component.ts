@@ -20,9 +20,7 @@ export class WidgetWeatherComponent implements OnInit {
     this.render.appendChild(this.el.nativeElement.children[0], script);
     script.type = 'text/javascript';
     script.src = 'https://meteoprog.ua/js/winformer.min.js?id=100';*/
-    this.getData().subscribe(res => {
-      console.log('RES:', res);
-    });
+    this.getData();
 
   }
 
@@ -36,12 +34,40 @@ export class WidgetWeatherComponent implements OnInit {
     });
     return { headers, withCredentials: true };
   }
-
   getData() {
-    const f =  new FormData();
-    f.append('params', JSON.stringify({"city_ids":"19703","domain":"https://meteoprog.ua/","id":"5ef7898398485263798b4693","lang":"ua"}));
-    //const data = {params: {"city_ids":"19703","domain":"https://meteoprog.ua/","id":"5ef7898398485263798b4693","lang":"ua"}};
-    return this.http.post('https://meteoprog.ua/widget_v2/wshow/5ef7898398485263798b4693/?nocache=1', f, this.getRequestOptions());
+    let c;
+    function u(i) {
+      let e, render, n, o, r;
+      const a = c[i].getAttribute('data-params');
+      const l = JSON.parse(a);
+      const d = l.city_ids.split(',').length;
+      c[i].querySelectorAll('a[href*="meteoprog."]').length >= 2 * d + 1 ? (e = a,
+        render = (e) => {
+          const container = document.createElement('div', ({ class: 'outerelem' } as any));
+          container.innerHTML = e;
+          for (var n = container.querySelectorAll('link'), o = container.querySelectorAll('img'), r = l.domain.substring(0, l.domain.length - 1), a = 0; a < n.length; a++) {
+            n[a].href = r + n[a].getAttribute('href');
+          }
+          for (a = 0; a < o.length; a++) {
+            o[a].src = r + o[a].getAttribute('src');
+          }
+          document.querySelectorAll('.meteoprog-informer')[i].innerHTML = container.innerHTML;
+          ++i < c.length && u(i);
+        }
+        ,
+        n = new XMLHttpRequest,
+        o = JSON.parse(e),
+        r = o.domain.substring(0, o.domain.length - 1) + '/widget_v2/wshow/' + o.id + '/?nocache=1',
+        n.open('POST', r, !0),
+        n.setRequestHeader('Content-type', 'application/x-www-form-urlencoded'),
+        n.onreadystatechange = () => {
+          4 === n.readyState && 200 === n.status && render(n.responseText)
+        }
+        ,
+        n.send('params=' + e)) : ++i < c.length && u(i)
+    }
+    c = document.querySelectorAll('.meteoprog-informer');
+    u(0);
   }
 
 }
