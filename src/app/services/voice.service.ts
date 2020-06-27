@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { forkJoin } from 'rxjs';
-import { share, shareReplay } from 'rxjs/operators';
+import { forkJoin, of } from 'rxjs';
+import { share, shareReplay, tap } from 'rxjs/operators';
 
 @Injectable()
 export class VoiceService {
   private isPlayingTime = false;
+  private listPreloadedAudio: any[];
 
   runResponsiveVoice(text: string) {
     const responsiveVoice = 'responsiveVoice';
@@ -15,17 +16,27 @@ export class VoiceService {
 
   preLoadHourses() {
     const list = [];
-    for (let i = 0; i <= 23; i++) {
+    for (let i = 0; i < 24; i++) {
       list.push(`./assets/ua/time/hours/h${i}.mp3`);
     }
-    for (let i = 0; i <= 23; i++) {
+    for (let i = 0; i < 60; i++) {
       list.push(`./assets/ua/time/minutes/${i}.mp3`);
     }
-    return forkJoin(list.map(url => {
-      const audio = new Audio();
-      audio.src = url;
-      return new Promise((res, req) => audio.addEventListener('canplaythrough', () => res(audio), false));
-    }));
+
+
+    if (!this.listPreloadedAudio) {
+      return forkJoin(list.map(url => {
+        const audio = new Audio();
+        audio.src = url;
+        return new Promise((res, req) => audio.addEventListener('canplaythrough', () => res(audio), false));
+      })).pipe(
+        tap(res => {
+          this.listPreloadedAudio = res;
+        })
+      );
+    } else {
+      return of(this.listPreloadedAudio);
+    }
   }
 
   runPlayAudioTime(hour: number, minutes: number) {

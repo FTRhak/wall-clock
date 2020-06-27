@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { DropdownModule } from 'primeng/dropdown';
-import { DialogModule } from 'primeng/dialog';
 
 import { AppComponent } from './app.component';
 import { PanelClockComponent } from './components/panel-clock/panel-clock.component';
@@ -20,6 +18,7 @@ import { WidgetAnnounceTimeComponent } from './widgets/widget-announce-time/widg
 import { WidgetWeatherComponent } from './widgets/widget-weather/widget-weather.component';
 import { PanelStatesComponent } from './components/panel-states/panel-states.component';
 import { HourLimitPipe } from './widgets/widget-announce-time/hour-limit.pipe';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -39,7 +38,8 @@ import { HourLimitPipe } from './widgets/widget-announce-time/hour-limit.pipe';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     // { provide: ErrorHandler, useClass: ErrorHandlerService },
