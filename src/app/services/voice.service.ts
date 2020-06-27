@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { forkJoin } from 'rxjs';
+import { share, shareReplay } from 'rxjs/operators';
 
 @Injectable()
 export class VoiceService {
@@ -11,18 +13,39 @@ export class VoiceService {
     }
   }
 
+  preLoadHourses() {
+    const list = [];
+    for (let i = 0; i <= 23; i++) {
+      list.push(`./assets/ua/time/hours/h${i}.mp3`);
+    }
+    for (let i = 0; i <= 23; i++) {
+      list.push(`./assets/ua/time/minutes/${i}.mp3`);
+    }
+    return forkJoin(list.map(url => {
+      const audio = new Audio();
+      audio.src = url;
+      return new Promise((res, req) => audio.addEventListener('canplaythrough', () => res(audio), false));
+    }));
+  }
+
   runPlayAudioTime(hour: number, minutes: number) {
     if (!this.isPlayingTime) {
-      this.isPlayingTime = true;
-      const audioHour = new Audio(`./assets/ua/time/hours/h${hour}.mp3`);
-      audioHour.onpause = () => {
-        const audioMinutes = new Audio(`./assets/ua/time/minutes/${minutes}.mp3`);
-        audioMinutes.onpause = () => {
-          this.isPlayingTime = false;
+      this.preLoadHourses().pipe(
+        shareReplay(1, 100000000000)
+      ).subscribe((res: any[]) => {
+        console.log('Play time');
+        const audioHour = res[hour];
+        const audioMinutes = res[24 + minutes];
+        audioHour.onpause = () => {
+          audioMinutes.onpause = () => {
+            audioHour.onpause = null;
+            audioMinutes.onpause = null;
+            this.isPlayingTime = false;
+          };
+          audioMinutes.play();
         };
-        audioMinutes.play();
-      };
-      audioHour.play();
+        audioHour.play();
+      });
     }
   }
 }
